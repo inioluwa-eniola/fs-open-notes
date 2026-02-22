@@ -1,9 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "type": "module",
   "description": "server",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "script": "node index.js",
     "dev": "node --watch index.js",
