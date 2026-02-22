@@ -1,9 +1,10 @@
 import 'dotenv/config'
-import express from 'express'
-import Note from './models/note.js'
+const express = require('express')
+const Note = require('./models/note.js}')
 
 const app = express()
 
+app.use(express.static('dist'))
 app.use(express.json())
 
 app.get('/api/notes', (request, response) => {
@@ -32,9 +33,8 @@ app.delete('/api/notes/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.post ('/api/notes', (request, response) => {
+app.post ('/api/notes', (request, response, next) => {
     const body = request.body
-
     if (!body.content) {
         return response.status(400).json({
             error: 'content missing'
@@ -46,10 +46,11 @@ app.post ('/api/notes', (request, response) => {
         important: body.important || false,
     })
 
-    note.save().then(savedNote => {
-        response.json(savedNote)
-    })
-
+    note.save()
+        .then(savedNote => {
+            response.json(savedNote)
+        })
+        .catch(error => next(error))
 })
 
 app.put('/api/notes/:id', (request, response, next) => {
@@ -82,6 +83,8 @@ const errorHandler = (error, request, response, next) => {
 
     if (error.name === 'CastError') {
         return response.status(400).send({ error: 'malformatted id' })
+    } else if (error.name === 'ValidationError') {
+        return response.status(400).json({ error: error.message })
     }
 
     next(error)

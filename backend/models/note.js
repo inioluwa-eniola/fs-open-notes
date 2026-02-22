@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const { Schema, model } = mongoose
 
@@ -16,7 +16,11 @@ mongoose
   });
 
 const noteSchema = new Schema({
-  content: String,
+  content: {
+    type: String,
+    minLength: 5,
+    required: true
+  },
   important: Boolean,
 });
 
@@ -29,6 +33,6 @@ noteSchema.set("toJSON", {
 });
 
 const Note = model("Note", noteSchema);
-export default Note
+module.exports = Note
 
 
