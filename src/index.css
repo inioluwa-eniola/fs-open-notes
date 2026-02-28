@@ -18,3 +18,8 @@ h1 {
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.login-text {
+    display: flex;
+    align-items: center;
+}
