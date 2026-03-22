@@ -6,9 +6,10 @@
   "type": "commonjs",
   "scripts": {
     "script": "cross-env NODE_ENV=production node index.js",
-    "dev": "cross-env NODE_ENV=development node --watch index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test node --test",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start:test": "cross-env NODE_ENV=test node --watch index.js"
   },
   "author": "Inioluwa Eniola",
   "license": "MIT",
@@ -20,7 +21,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.2",
     "morgan": "^1.10.1",
-    "node": "^25.6.1"
+    "node": "^25.6.1",
+    "nodemon": "^3.1.14"
   },
   "keywords": [],
   "devDependencies": {

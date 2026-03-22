@@ -1,13 +1,11 @@
 import { useState } from 'react'
-
-
   
 const LoginForm = ({ createLogin }) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const sendLoginCredentials = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     console.log('logging in with', username, password)
     
@@ -21,7 +19,7 @@ const LoginForm = ({ createLogin }) => {
   }
 
   return (
-    <form onSubmit={sendLoginCredentials}>
+    <form onSubmit={handleSubmit}>
       <h2>Login</h2>
       <div>
         <label>

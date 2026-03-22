@@ -8,6 +8,11 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.vitest
+      }
+    },
     extends: [
       js.configs.recommended,
       reactHooks.configs.flat.recommended,

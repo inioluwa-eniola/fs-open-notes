@@ -16,7 +16,6 @@ const App = () => {
   const [user, setUser] = useState(null)
   const noteFormRef = useRef()
 
-
   const notesToShow = showAll ? notes : notes.filter((note) => note.important);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const App = () => {
 
   const createLogin = async (loginInfo) => {
     try {
-      const user = await loginService.login (loginInfo)
+      const user = await loginService.login(loginInfo)
       window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
       noteService.setToken(user.token)
       setUser(user)
